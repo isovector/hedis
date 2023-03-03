@@ -107,7 +107,7 @@ instance
     (RedisResult a) => RedisResult [a] where
     decode (MultiBulk (Just rs)) = mapM decode rs
     decode r                     = Left r
- 
+
 instance (RedisResult a, RedisResult b) => RedisResult (a,b) where
     decode (MultiBulk (Just [x, y])) = (,) <$> decode x <*> decode y
     decode r                         = Left r

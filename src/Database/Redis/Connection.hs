@@ -182,7 +182,7 @@ runRedis (NonClusteredConnection pool) redis =
 runRedis (ClusteredConnection _ pool) redis =
     withResource pool $ \conn -> runRedisClusteredInternal conn (refreshShardMap conn) redis
 
-newtype ClusterConnectError = ClusterConnectError Reply
+data ClusterConnectError = ClusterConnectError Reply
     deriving (Eq, Show, Typeable)
 
 instance Exception ClusterConnectError

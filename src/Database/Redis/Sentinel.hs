@@ -188,7 +188,7 @@ catchRedis action handler =
     , Handler $ \ex -> handler (show @ConnectionLostException ex)
     ]
 
-newtype SentinelConnection = SentinelConnection (MVar SentinelConnection')
+data SentinelConnection = SentinelConnection (MVar SentinelConnection')
 
 data SentinelConnection'
   = SentinelConnection'

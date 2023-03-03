@@ -32,12 +32,12 @@ crc16Update :: Word16  -- ^ polynomial
             -> Word16 -- ^ initial crc
             -> Word8 -- ^ data byte
             -> Word16 -- ^ new crc
-crc16Update poly crc b = 
+crc16Update poly crc b =
   foldl crc16UpdateBit newCrc [1 :: Int .. 8]
-  where 
+  where
     newCrc = crc `xor` shiftL (fromIntegral b :: Word16) 8
     crc16UpdateBit crc' _ =
       if (crc' .&. 0x8000) /= 0x0000
           then shiftL crc' 1 `xor` poly
           else shiftL crc' 1
- 
+

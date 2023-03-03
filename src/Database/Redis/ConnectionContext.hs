@@ -51,7 +51,7 @@ data ConnectPhase
   | PhaseOpenSocket
   deriving (Show)
 
-newtype ConnectTimeout = ConnectTimeout ConnectPhase
+data ConnectTimeout = ConnectTimeout ConnectPhase
   deriving (Show, Typeable)
 
 instance Exception ConnectTimeout

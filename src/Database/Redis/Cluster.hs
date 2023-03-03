@@ -76,7 +76,7 @@ data PipelineState =
 -- it with a new `Pending` state. The executed state is held on to by the
 -- replies within it.
 
-newtype Pipeline = Pipeline (MVar PipelineState)
+data Pipeline = Pipeline (MVar PipelineState)
 
 data NodeRole = Master | Slave deriving (Show, Eq, Ord)
 
@@ -89,15 +89,15 @@ type MasterNode = Node
 type SlaveNode = Node
 data Shard = Shard MasterNode [SlaveNode] deriving (Show, Eq, Ord)
 
-newtype ShardMap = ShardMap (IntMap.IntMap Shard) deriving (Show)
+data ShardMap = ShardMap (IntMap.IntMap Shard) deriving (Show)
 
-newtype MissingNodeException = MissingNodeException [B.ByteString] deriving (Show, Typeable)
+data MissingNodeException = MissingNodeException [B.ByteString] deriving (Show, Typeable)
 instance Exception MissingNodeException
 
-newtype UnsupportedClusterCommandException = UnsupportedClusterCommandException [B.ByteString] deriving (Show, Typeable)
+data UnsupportedClusterCommandException = UnsupportedClusterCommandException [B.ByteString] deriving (Show, Typeable)
 instance Exception UnsupportedClusterCommandException
 
-newtype CrossSlotException = CrossSlotException [[B.ByteString]] deriving (Show, Typeable)
+data CrossSlotException = CrossSlotException [[B.ByteString]] deriving (Show, Typeable)
 instance Exception CrossSlotException
 
 connect :: [CMD.CommandInfo] -> MVar ShardMap -> Maybe Int -> IO Connection

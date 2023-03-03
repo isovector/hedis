@@ -30,7 +30,7 @@ data AritySpec = Required Integer | MinimumRequired Integer deriving (Show)
 
 data LastKeyPositionSpec = LastKeyPosition Integer | UnlimitedKeys Integer deriving (Show)
 
-newtype InfoMap = InfoMap (HM.HashMap String CommandInfo)
+data InfoMap = InfoMap (HM.HashMap String CommandInfo)
 
 -- Represents the result of the COMMAND command, which returns information
 -- about the position of keys in a request

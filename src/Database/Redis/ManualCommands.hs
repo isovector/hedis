@@ -667,7 +667,7 @@ exists
     -> m (f Bool)
 exists key = sendRequest ["EXISTS", key]
 
-newtype Cursor = Cursor ByteString deriving (Show, Eq)
+data Cursor = Cursor ByteString deriving (Show, Eq)
 
 
 instance RedisArg Cursor where
@@ -1154,7 +1154,7 @@ xinfoGroups
     -> m (f [XInfoGroupsResponse])
 xinfoGroups stream = sendRequest ["XINFO", "GROUPS", stream]
 
-data XInfoStreamResponse 
+data XInfoStreamResponse
     = XInfoStreamResponse
     { xinfoStreamLength :: Integer
     , xinfoStreamRadixTreeKeys :: Integer
@@ -1163,7 +1163,7 @@ data XInfoStreamResponse
     , xinfoStreamLastEntryId :: ByteString
     , xinfoStreamFirstEntry :: StreamsRecord
     , xinfoStreamLastEntry :: StreamsRecord
-    } 
+    }
     | XInfoStreamEmptyResponse
     { xinfoStreamLength :: Integer
     , xinfoStreamRadixTreeKeys :: Integer
